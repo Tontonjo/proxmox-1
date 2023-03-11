@@ -1,0 +1,23 @@
+# Liste des commandes:
+
+apt-get remove --purge nvidia-driver libnvcuvid1 libnvidia-encode1 libcuda1 nvidia-smi
+apt-get remove nvidia-docker2
+
+nano /etc/default/grub
+# editer "GRUB_DEFAULT" - mettre une valeur de 2
+update-grub
+
+# reboot le serveur
+reboot now
+
+# controler la version kernel actuelle:
+uname -r
+
+# Reinstallation:
+# On considere que les sources et autres sont deja configurées - s'agissant d'une réinstallation
+
+distribution=$(. /etc/*-release;echo $VERSION_CODENAME)
+apt-get install -t $distribution-backports nvidia-driver libnvcuvid1 libnvidia-encode1 libcuda1 nvidia-smi
+apt-get install nvidia-docker2
+
+#Re-activer le NVenc - tester :-)
